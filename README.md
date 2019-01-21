@@ -20,18 +20,18 @@
 * 模块化开发
   * 我们将通用的功能进行了抽取，以Rails Engine的形式 附加到主项目即可快速应用某快功能；
   * 基于统一的设计理念，UI体系；
-  * [engines系列](_blogs/engines.md)
-  * [modular](_blogs/modular.md)
+  * [engines系列](blogs/engines.md)
+  * [modular](blogs/modular.md)
 
 * 优化工具，提升生产力
   * 除了通用的功能及组件，我们也对一些工具进行了优化，比如表单构建工具。
-  * [default系列](_blogs/default.md)
+  * [default系列](blogs/default.md)
 
 * 全栈开发，降低技术栈复杂度
-  * 全栈开发，前后端不分离，[关于全栈开发](_blogs/full_stack.md)
-  * 克制使用Service层 [](_blogs/concern.md)
+  * 全栈开发，前后端不分离，[关于全栈开发](blogs/full_stack.md)
+  * 克制使用Service层 [](blogs/concern.md)
 
-* 更多见[开发原则](_blogs/rule.md)
+* 更多见[开发原则](blogs/rule.md)
 
 ## 追求生产力和效率
 
