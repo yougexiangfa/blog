@@ -1,7 +1,13 @@
-# Ruby & Rails代码风格
-  
-  参考：[社区版本Ruby Style](https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md)
-  主要是做一些团队内的补充；
+---
+title: Ruby & Rails代码风格
+category: about
+layout: post
+---
+
+参考：[社区版本Ruby Style](https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md)
+
+主要是做一些团队内的补充；
+
 ## Ruby
 
 * 在字符串中尽可能使用单引号：`'string'`，理由：
