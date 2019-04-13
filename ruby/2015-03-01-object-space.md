@@ -1,7 +1,7 @@
 ---
 title: ObjectSpace介绍
-category: ruby
 layout: post
+category: ruby
 ---
 
 最近在调试bug的时候，遇到一个诡异的错误，错误信息中如下：

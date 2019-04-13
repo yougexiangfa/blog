@@ -1,7 +1,7 @@
 ---
 title: Rails中的request
-category: rails
 layout: post
+category: rails
 ---
 
 每个web请求都有对应的 Request和Response，在Rails中，我们如何获取关于request的信息呢？

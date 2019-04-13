@@ -2,7 +2,6 @@
 title: ruby对象的序列化
 layout: post
 category: ruby
-published: true
 ---
 
 ## 什么是序列化对象

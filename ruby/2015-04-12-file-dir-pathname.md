@@ -1,7 +1,7 @@
 ---
 title: 理理File/Dir/Pathname（一）
-category: ruby
 layout: post
+category: ruby
 ---
 
 ## 引子

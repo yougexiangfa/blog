@@ -2,7 +2,6 @@
 title: ruby中的编码
 layout: post
 category: ruby
-published: true
 ---
 
 信息的编码包含两个层面的含义。

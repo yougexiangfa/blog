@@ -2,7 +2,6 @@
 title: 如何写rakefile
 layout: post
 category: ruby
-published: true
 ---
 
 rake 是ruby世界里一个非常好用的任务构建工具，其江湖地位极高。

@@ -1,7 +1,7 @@
 ---
 title: TracePoint介绍
-category: ruby
 layout: post
+category: ruby
 ---
 
 ## 引子
