@@ -1,7 +1,7 @@
 ---
+title: 人生如游戏
 layout: post
 category: 杂谈
-title: 人生如游戏
 published: false
 ---
 
