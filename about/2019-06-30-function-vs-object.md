@@ -13,16 +13,16 @@ layout: post
 
 ## 函数（方法）是否在对象上调用？
 
-以 Javascript 为例，在js中，有些函数是全局函数，不在任何对象上调用。如：
+以 Python 为例，有些函数是全局函数，不在任何对象上调用。如：
 
-```javascript
-parseInt('1')
+```python
+print('test')
 ```
 
 有些函数，则是需要在某个对象上调用，如：
 
-```javascript
-'a'.toUpperCase()
+```python
+'A'.lower()
 ```
 
 这个例子揭示了面向对象编程和函数式编程最本质的区别。
