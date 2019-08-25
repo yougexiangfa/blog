@@ -163,3 +163,8 @@ env.resolve.modules = env.resolve.modules.concat(share_path.resolved_roots)
 import 'channels' // webpacker 
 ```
 
+## 其他提示
+
+1. webpack 相关配置文件是为 nodejs 使用的，所以使用 nodejs 的模块语法：`module.exports/require`，前端 js 代码会经过 babel 编译，虽然webpack能理解 CommonJS 等多种模块体系，但是推荐使用 ES6 的 `export/import` 语法。
+
+2. 在Rails开发模式下，如果没有启动 webpack-dev-server, rails会将前端代码编译到 public 目录下，此时修改js代码是不能立即生效的。所以推荐在开发js时，同时启动`bin/webpack-dev-server`。
