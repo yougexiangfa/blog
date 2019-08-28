@@ -17,7 +17,9 @@ webpack 的引入，显然解决了一些 assets pipiline 很难解决的痛点�
 1. 移除 assets pipeline 对 js 处理的配置
 
 `app/assets/config/manifest.js` 文件默认配置了 assets pipiline 需要处理的静态资源文件，把 js 相关的内容移除；
+
 如果 `app/config/application.rb` 中定义了 assets.js_compressor，也一并移除；
+
 万恶的 `uglifier`, `coffee-rails` gem 也可以永远拜拜了，再也不会为配置 execjs 的 runtime 而烦恼。
 
 2. 修改 webpacker 配置
@@ -34,31 +36,52 @@ source_entry_path: javascripts
 
 如何才能让 webpack 在编译的时候能够加载到 engine 下的 js 代码呢，webpack 的工作目录是 Rails主项目，最大的难点在于如何让 webpack 知道各个engine 在文件系统中的具体位置，也就是涉及到 ruby 和 js 之间分享数据。
 
-我采用了一个比较粗暴的办法，在rails 项目启动完成的时候，将 engine 的位置信息存到一个 json 文件当中，然后在 webpack 的配置文件中去解析这个 json文件，获取 engine 的路径信息。
+我采用了一个比较粗暴的办法，在rails 项目启动完成的时候，将 engine 的位置信息更新到 config/webpacker.yml 文件当中，然后在 config/webpack 的配置文件中去解析这个文件，获取 engine 的路径信息。
 
 ### 1. 在 rails 项目中导出 engine 路径信息
 
 先写个 util，方便把 ruby 中的对象（数据）存到 json文件中，
 
 ```ruby
-# https://github.com/work-design/rails_com/blob/master/lib/rails_com/utils/json_file_helper.rb
+# https://github.com/work-design/rails_com/blob/master/lib/rails_com/webpacker/yaml_helper.rb
 
-module JsonFileHelper
-  extend self
-  
-  def dump(obj, io = default_io)
-    JSON.dump(obj, io)
-    io.fsync
+module Webpacker
+  class YamlHelper
+
+    def initialize(path: 'config/webpacker.yml', export: 'config/webpacker.yml')
+      real_path = Rails.root + path
+      real_export = Rails.root + export
+      
+      @yaml = YAML.parse_stream File.read(real_path)
+      @content = @yaml.children[0].children[0].children
+      @parsed = @yaml.to_ruby[0]
+      @io = File.new(real_export, 'a+')
+    end
+    
+    def dump
+      @io.truncate(0)
+      @yaml.yaml @io
+      @io.fsync
+      @io.close
+    end
+    
+    def append(env = 'default', key, value)
+      return if Array(@parsed.dig(env, key)).include? value
+      env_index = @content.find_index { |i| i.scalar? && i.value == env }
+
+      env_content = @content[env_index + 1].children
+      key_index = env_content.find_index { |i| i.scalar? && i.value == key }
+      
+      value_content = env_content[key_index + 1]
+      if value_content.sequence?
+        value_content.style = 1  # block style
+        value_content.children << Psych::Nodes::Scalar.new(value)
+      end
+
+      value_content
+    end
+    
   end
-  
-  def default_io
-    File.new(path, 'w+')
-  end
-  
-  def path
-    Rails.root + 'tmp/share_object.json'
-  end
-  
 end
 ```
 然后定义了一个 rails 初始化过程中的回调，如果engine 下存在 app/assets/javascripts 文件夹，则将这个路径存到 tmp/share_object.json 文件。
@@ -66,32 +89,32 @@ end
 ```ruby
 # https://github.com/work-design/rails_com/blob/master/lib/rails_com/engine.rb#L30
 config.after_initialize do |app|
-  dirs = []
+  webpack = Webpacker::YamlHelper.new
   Rails::Engine.subclasses.each do |engine|
-    dirs += engine.paths['app/assets'].existent_directories.select { |i| i.end_with?('javascripts') }
+    engine.paths['app/assets'].existent_directories.select(&->(i){ i.end_with?('javascripts') }).each do |path|
+      webpack.append 'resolved_paths', path
+    end
   end
-  JsonFileHelper.dump dirs
+  webpack.dump
 end
 ```
 
 ### 2. js 通过数据文件 或许相关的路径信息；
 
-```javsscript
+```js
 // https://github.com/work-design/rails_com/blob/master/package/index.js
 
 const { basename, dirname, join, relative, resolve } = require('path')
-const { readFileSync } = require('fs')
 const { sync } = require('glob')
 const extname = require('path-complete-extname')
 const config = require('@rails/webpacker/package/config')
-const roots = JSON.parse(readFileSync('tmp/share_object.json', 'utf8'))
 
 const paths = () => {
   const { extensions } = config
   let glob = extensions.length === 1 ? `**/*${extensions[0]}` : `**/*{${extensions.join(',')}}`
   let result = {}
 
-  roots.forEach((rootPath) => {
+  config.resolved_paths.forEach((rootPath) => {
     const ab_paths = sync(join(rootPath, glob))
 
     ab_paths.forEach((path) => {
@@ -104,12 +127,7 @@ const paths = () => {
   return result
 };
 
-const resolved_roots = [resolve('node_modules')].concat(roots)
-
-module.exports = {
-  paths,
-  resolved_roots
-}
+module.exports = paths
 ```
 
 这里我们导出了两个数据：
@@ -168,3 +186,7 @@ import 'channels' // webpacker
 1. webpack 相关配置文件是为 nodejs 使用的，所以使用 nodejs 的模块语法：`module.exports/require`，前端 js 代码会经过 babel 编译，虽然webpack能理解 CommonJS 等多种模块体系，但是推荐使用 ES6 的 `export/import` 语法。
 
 2. 在Rails开发模式下，如果没有启动 webpack-dev-server, rails会将前端代码编译到 public 目录下，此时修改js代码是不能立即生效的。所以推荐在开发js时，同时启动`bin/webpack-dev-server`。
+
+3. 当新增或删除了 js 文件之后，entry 改变之后，需要重启 bin/webpack-dev-server;
+
+4. 由于 config/webpacker.yml 会根据项目的实际路径进行更新，建议git update-index --assume-unchanged config/webpacker.yml；
