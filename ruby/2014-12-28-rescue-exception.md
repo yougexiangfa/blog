@@ -1,7 +1,7 @@
 ---
-layout: post
 title: rescue exception in ruby
 category: ruby
+layout: post
 ---
 `Exception`是ruby中所以异常会继承的父类，当我们在ruby中rescue异常类的时候，如果没有指定具体的异常类。
 rescue拦截的实际是所有的标准类。

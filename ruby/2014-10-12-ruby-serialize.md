@@ -1,7 +1,7 @@
 ---
 title: ruby对象的序列化
-layout: post
 category: ruby
+layout: post
 ---
 
 ## 什么是序列化对象

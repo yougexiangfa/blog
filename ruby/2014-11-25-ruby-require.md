@@ -1,14 +1,10 @@
 ---
-layout: post
-title: require 的故事
+title: Ruby中的模块-require
 category: ruby
+layout: post
 ---
 
-## 引子
-
-关于`require`,一般我们接受到的知识是这样的：
-
-在ruby中，`require`是位于Kernel模块中的一个方法。其方法参数接受一个文件名，如果文件名不是绝对路径，则会依次加入$LOAD_PATH中的路径依次查找，只到找到为止。如果没有找到文件，则会报一个`LoadError`错误。
+require 是 ruby 中分文件组织代码的关键点，require 是位于 Kernel 模块中的一个方法。其方法参数接受一个文件名，如果文件名不是绝对路径，则会按照 $LOAD_PATH 中的路径依次查找，只到找到为止。如果没有找到的文件，则会报一个 LoadError 错误。
 
 下面我们来做个试验：
 
@@ -26,7 +22,7 @@ from /Users/qin/.rbenv/versions/2.1.5/lib/ruby/2.1.0/rubygems/core_ext/kernel_re
 
 ## gem中的`require`
 
-那gem中的`require`到底都做了些什么呢？当我们调用`require 'a'`的时候，如果能够在$LOAD_PATH 中找到这个文件，那`require`的任务就完成了。如果没有找到，`require`就会调用`gem 'a'`,如果能够找到a这个gem，则将其加入$LOAD_PATH 中。
+那gem中的`require`到底都做了些什么呢？当我们调用`require 'a'`的时候，如果能够在 $LOAD_PATH 中找到这个文件，那`require`的任务就完成了。如果没有找到，`require`就会调用`gem 'a'`,如果能够找到a这个gem，则将其加入$LOAD_PATH 中。
 
 gem中的`require`源码中关于调用gem的部分：
 
