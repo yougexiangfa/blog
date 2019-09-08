@@ -197,6 +197,6 @@ import 'channels' // webpacker
 
 4. 由于 config/webpacker.yml 会根据项目的实际路径进行更新，建议将其在 git 中忽略。
 
-5. 更新 Gemfile 配置： gem 'webpacker', require: File.exist?('config/webpacker.yml')，这样可以杜绝 config/webpacker.yml 为生成时的报错。
+5. 更新 Gemfile 配置： gem 'webpacker', require: File.exist?('config/webpacker.yml')，这样可以杜绝 config/webpacker.yml 未生成时的报错。
 
 6. config.webpacker.xxx = xx if config.respond_to?(:webpacker) 这个配置主要是解决上述第5条配置的副作用。
