@@ -40,7 +40,7 @@ debug>
 
 ## Debugger
 
-使用 node inspect 的方式虽然实现了 debug, 但是从第一行代码就开始断点实用性显然优先，要想随心所欲的设置断点，可以使用debugger 作为标记。
+使用 node inspect 的方式虽然实现了 debug, 但是从第一行代码就开始进入断点显然不够实用，要想随心所欲的设置断点，可以使用debugger 作为标记。
 
 ```js
 // code/debug.js
