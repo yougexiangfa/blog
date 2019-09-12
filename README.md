@@ -23,14 +23,11 @@ Work Design 是围绕 [Ruby On Rails](https://github.com/rails/rails) 生态打�
 尽管 Ruby on Rails 是一个庞大且复杂的技术体系，而 Work Design 的出现正是要将前沿的技术体系化繁为简，让你可以循序渐进的使用我们的项目开发。为此我们也提供了完善的培训计划（即将到来）。
 
 
-
-## 关于UI
-[work-ui](https://github.com/work-design/work-ui)
-
-## Engine 汇总
-[engine](https://github.com/work-design/engine)
-
 ## 相关项目
+* [work-ui](https://github.com/work-design/work-ui) ：多主题UI
+* [engine](https://github.com/work-design/engine) ：Rails Engine 汇总
+
+## 基于 Work Design 发展的项目
 * [One Work](https://github.com/one-work/one.work)： 基于 Work Design 技术栈孵化的开源项目，旨在打造下一代企业管理系统；
 * [有个想法](https://github.com/yougexiangfa)： 基于 Work Design 技术栈孵化的技术服务公司。
 
