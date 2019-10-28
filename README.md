@@ -6,7 +6,7 @@ Work Design 是围绕 [Ruby On Rails](https://github.com/rails/rails) 生态打�
 
 十几年前，很多企业开始尝试无纸化办公，Office 属于复杂技能，会使用微软 Office 办公软件属于稀缺人才，大量企业享受到了无纸化办公带来的效率提升。但是这远远不够，每个中小企业还有巨大的空间进一步提升自己的效率，优化员工的效能，Work Design 的使命就是让每个中小型企业都有能力开发和打造自己的办公管理业务系统，实现技术普惠，提升社会效率。
 
-Work Design 就是要让数年之后，开发自己系统这件事情就像现在的人们使用 Office 一样普遍，实现技术普惠。
+Work Design 就是要让数年之后，开发自己系统这件事情就像现在的人们使用 Office 一样普遍。
 
 ## 我们为什么要开发自己的软件
 软件本质上是一个企业管理的载体或者工具，在软件出现之前，要让管理实践，需要通过人力管理，
@@ -42,6 +42,7 @@ Work Design 就是要让数年之后，开发自己系统这件事情就像现�
 
 ## 基于 Work Design 发展的项目
 * [One Work](https://github.com/one-work/one.work)： 基于 Work Design 技术栈孵化的开源项目，旨在打造下一代企业管理系统；
+* [Dao42](https://www.dao42.com)：Work Design 计划的主要投资方，走在国内前沿的技术孵化服务公司。
 * [有个想法](https://github.com/yougexiangfa)： 基于 Work Design 技术栈孵化的技术服务公司。
 
 如果你希望基于 Work Design 提供的组件来打造属于自己的公司和项目，亦或者是成为自由职业者，尽请提交 [issue](https://github.com/work-design/work.design/issues)，我们会将你加入到这个列表当中。
