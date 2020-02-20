@@ -47,7 +47,7 @@ Work Design 就是要让数年之后，开发自己系统这件事情就像现�
 
 ## 基于 Work Design 发展的项目
 * [One Work](https://github.com/one-work/one.work)： 基于 Work Design 技术栈孵化的开源项目，旨在打造下一代企业管理系统；
-* [Dao42](https://www.dao42.com)：Work Design 计划的主要投资方，走在国内前沿的技术孵化服务公司。
 * [有个想法](https://github.com/yougexiangfa)： 基于 Work Design 技术栈孵化的技术服务公司。
+* [Dao42](https://www.dao42.com)：Work Design 计划的主要合作方，走在国内前沿的技术孵化服务公司。
 
 如果你希望基于 Work Design 提供的组件来打造属于自己的公司和项目，亦或者是成为自由职业者，尽请提交 [issue](https://github.com/work-design/work.design/issues)，我们会将你加入到这个列表当中。
