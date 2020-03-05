@@ -1,6 +1,6 @@
 # Work Design
 
-Work Design 是围绕 [Ruby On Rails](https://github.com/rails/rails) 生态打造的大型开源项目，专注于互联网应用开发。
+Work Design 是基于 [Ruby On Rails](https://github.com/rails/rails) 的大型开源项目，专注于互联网应用开发。
 
 每个程序员都有一个造轮子的梦想，想着某个功能的代码我只用“一次编写，到处使用”（Write Once, Run Everywhere），Work Design 的诞生也不外乎如此，但是 Work Design 的目标远不止于此。
 
@@ -42,7 +42,7 @@ Work Design 就是要让数年之后，开发自己系统这件事情就像现�
 
 
 ## 相关项目
-* [work-ui](https://github.com/work-design/work-ui) ：多主题UI
+* [ui](https://github.com/work-design/ui) ：多主题 UI
 * [engine](https://github.com/work-design/engine) ：Rails Engine 汇总
 
 ## 基于 Work Design 发展的项目
